@@ -1,0 +1,69 @@
+<menu-app></menu-app>
+
+<div class="row">
+    <div class="col-md-12">
+		
+		<h1><small>Cadastro de Reservas</small></h1>
+		
+		<p ng-show="mensagem.length" class="alert alert-info">{{mensagem}}</p>
+
+		<form novalidate name="formulario" class="row col-md-12" ng-submit="submeter()">
+			
+			<div class="row">
+				<div class="form-group col-md-3">
+					<label>Data Inicial</label>
+					<input name="dataInicial" class="form-control" ng-model="reserva.dataInicial" required ui-date-mask>
+					<span ng-show = "formulario.$submitted && formulario.dataInicial.$error.required" class="form-control alert-danger">
+						Por favor, informe a data inicial da reserva
+					</span> 
+				</div>
+
+				<div class="form-group col-md-3">
+					<label>Data Final</label>
+					<input name="dataFinal" class="form-control" ng-model="reserva.dataFinal" required ui-date-mask>
+					<span ng-show = "formulario.$submitted && formulario.dataFinal.$error.required" class="form-control alert-danger">
+						Por favor, informe a data final da reserva
+					</span> 
+				</div>
+			</div>		
+
+			<div class="row">
+	        	<div class="form-group col-md-6">
+		            <label>Imóvel</label>
+		            <select name="imovel" class="form-control" required
+		                ng-controller="ImovelListController"
+		                ng-model="imovelSelecionado._id"
+		                ng-options="imovel._id as (imovel.cidade +' - '+ imovel.descricao) for imovel in imoveis">
+		                <option value="">Escolha um imovel</option>
+		            </select>
+		            <span ng-show="formulario.$submitted && formulario.imovel.$error.required" class="form-control alert-danger">
+						Por favor, informe um imovel
+		            </span>
+		        </div>
+		    </div>
+
+			<div class="row">
+	        	<div class="form-group col-md-6">
+		            <label>Locatário</label>
+		            <select name="locatario" class="form-control" required
+		                ng-controller="PessoaListController"
+		                ng-model="locatarioSelecionado._id"
+		                ng-options="pessoa._id as pessoa.nome for pessoa in locatarios">
+		                <option value="">Escolha um locatário</option>
+		            </select>
+		            <span ng-show="formulario.$submitted && formulario.imovel.$error.required" class="form-control alert-danger">
+						Por favor, informe um locatário
+		            </span>
+		        </div>
+		    </div>
+
+            <div class="form-group col-md-6">
+			    <button type="submit" class="btn btn-primary" ng-disabled="formulario.$invalid">
+		            Salvar
+		        </button>
+	        	<a href="/reservas" class="btn btn-link">Cancelar</a>
+			</div>
+
+		</form>
+	</div>
+</div>

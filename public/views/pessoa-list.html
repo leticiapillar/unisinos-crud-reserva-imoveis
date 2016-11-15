@@ -1,0 +1,53 @@
+<menu-app></menu-app>
+
+
+<div class="row">
+	<div class="col-md-12">
+		<p ng-show="mensagem.length" class="alert alert-info">
+			{{mensagem}}
+		</p>
+    </div>
+</div>
+<br />
+<div class="row">
+	<div class="col-md-12">
+        <h1><small>Lista de Pessoas</small></h1>
+        <br />
+        <form>
+			<div class="input-group">
+				<span class="input-group-btn">
+					<a href="/pessoas/new" class="btn btn-primary pull-right" type="button">
+						Incluir
+					</a>
+				</span>
+			</div> 
+		</form>
+    </div>
+</div>
+<br />
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Tipo</th>
+					<th>Nome</th>
+					<th>E-mail</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="pessoa in pessoas">
+					<td>{{pessoa.tipo == 1 ? 'Locatário' : 'Proprietário'}}</td>
+					<td>{{pessoa.nome}}</td>
+					<td>{{pessoa.email}}</td>
+
+					<td class="pull-right">
+            			<a class="btn btn-link btn-sm" href="/pessoas/edit/{{pessoa._id}}">Editar</a>
+            			<button class="btn btn-link btn-sm" ng-click="remover(pessoa)">Remover</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

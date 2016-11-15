@@ -1,0 +1,52 @@
+<menu-app></menu-app>
+
+<div class="row">
+	<div class="col-md-12">
+		<h1><small>Lista de Imóveis</small></h1>
+		<form>
+			<div class="input-group">
+				<span class="input-group-btn">
+					<a href="/imoveis/new" class="btn btn-primary pull-right" type="button">
+						Incluir
+					</a>
+				</span>
+			</div> 
+		</form>
+    </div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<p ng-show="mensagem.length" class="alert alert-info">
+			{{mensagem}}
+		</p>
+    </div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Proprietário</th>
+					<th>Descrição</th>
+					<th>Cidade</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="imovel in imoveis">
+					<td>{{imovel.proprietario[0].nome}}</td>
+					<td>{{imovel.descricao}}</td>
+					<td>{{imovel.cidade}}</td>
+
+					<td class="pull-right">
+            			<a class="btn btn-link btn-sm" href="/imoveis/edit/{{imovel._id}}">Editar</a>
+            			<button class="btn btn-link btn-sm" ng-click="remover(imovel)">Remover</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</div>

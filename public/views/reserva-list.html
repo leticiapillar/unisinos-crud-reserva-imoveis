@@ -1,0 +1,54 @@
+<menu-app></menu-app>
+
+<div class="row">
+	<div class="col-md-12">
+		<p ng-show="mensagem.length" class="alert alert-info">
+			{{mensagem}}
+		</p>
+    </div>
+</div>
+<br />
+<div class="row">
+	<div class="col-md-12">
+		<h1><small>Lista de Reservas</small></h1>
+        <br />
+		<form>
+			<div class="input-group">
+				<span class="input-group-btn">
+					<a href="/reservas/new" class="btn btn-primary pull-right" type="button">
+						Incluir
+					</a>
+				</span>
+			</div> 
+		</form>
+    </div>
+</div>
+<br />
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Data Inicial</th>
+					<th>Data Final</th>
+					<th>Locatário</th>
+					<th>Imóvel</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="reserva in reservas">
+					<td>{{reserva.dataInicial | date: 'dd/MM/yyyy'}}</td>
+					<td>{{reserva.dataFinal | date: 'dd/MM/yyyy'}}</td>
+					<td>{{reserva.locatario[0].nome}}</td>
+					<td>{{reserva.imovel[0].descricao}}</td>
+					<td class="pull-right">
+            			<a class="btn btn-link btn-sm" href="/reservas/edit/{{reserva._id}}">Editar</a>
+            			<button class="btn btn-link btn-sm" ng-click="remover(reserva)">Remover</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</div>
