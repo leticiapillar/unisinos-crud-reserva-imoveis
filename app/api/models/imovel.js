@@ -12,6 +12,11 @@ var imovelSchema = new Schema({
 	cidade			: String,
 	cep				: String,
 	estado			: String,
+	valorImovel		: Number,
+	iptu			: Number,
+	valorLuz		: Number,
+	valorAgua		: Number,
+	valorCondominio	: Number,
 	proprietario	: [{type: Schema.Types.ObjectId, ref: 'Pessoa'}]
 });
 

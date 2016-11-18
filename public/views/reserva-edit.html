@@ -11,7 +11,7 @@
 			
 			<div class="row">
 				<div class="form-group col-md-3">
-					<label>Data Inicial</label>
+					<label>* Data Inicial</label>
 					<input name="dataInicial" class="form-control" ng-model="reserva.dataInicial" required ui-date-mask>
 					<span ng-show = "formulario.$submitted && formulario.dataInicial.$error.required" class="form-control alert-danger">
 						Por favor, informe a data inicial da reserva
@@ -19,7 +19,7 @@
 				</div>
 
 				<div class="form-group col-md-3">
-					<label>Data Final</label>
+					<label>* Data Final</label>
 					<input name="dataFinal" class="form-control" ng-model="reserva.dataFinal" required ui-date-mask>
 					<span ng-show = "formulario.$submitted && formulario.dataFinal.$error.required" class="form-control alert-danger">
 						Por favor, informe a data final da reserva
@@ -29,7 +29,7 @@
 
 			<div class="row">
 	        	<div class="form-group col-md-6">
-		            <label>Imóvel</label>
+		            <label>* Imóvel</label>
 		            <select name="imovel" class="form-control" required
 		                ng-controller="ImovelListController"
 		                ng-model="imovelSelecionado._id"
@@ -44,7 +44,7 @@
 
 			<div class="row">
 	        	<div class="form-group col-md-6">
-		            <label>Locatário</label>
+		            <label>* Locatário</label>
 		            <select name="locatario" class="form-control" required
 		                ng-controller="PessoaListController"
 		                ng-model="locatarioSelecionado._id"
