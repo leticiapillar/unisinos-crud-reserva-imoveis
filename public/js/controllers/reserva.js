@@ -10,6 +10,16 @@ angular.module('Reserva')
         $scope.locatarioSelecionado = {};
         $scope.imovelSelecionado = {};
         $scope.mensagem = '';
+        
+        var today = new Date();
+        today.setHours(0,0,0,0);
+        
+        var tomorrow = new Date();
+        tomorrow.setHours(0,0,0,0);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        
+        $scope.startDate = today;
+        $scope.endDate = tomorrow;
 
         if($routeParams.reservaId) {
             recursoReserva.get({reservaId: $routeParams.reservaId}, function(reserva) {
@@ -37,6 +47,15 @@ angular.module('Reserva')
                 });
         	}
         };
+
+        $scope.changeDataInicial = function() {
+            var dt = $scope.reserva.dataInicial;
+            if (dt >= today) {
+                dt.setDate(dt.getDate() + 1);
+                $scope.endDate = dt;
+                $scope.reserva.dataFinal = dt;
+            }
+        }
 
 }])
 

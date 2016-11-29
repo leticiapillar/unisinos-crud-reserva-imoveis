@@ -12,4 +12,18 @@ angular.module('Util')
 
     return ddo;
 
+})
+
+.directive('minDate', function() {
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attrs, ngModelController) {
+            
+            var minDate = scope.$eval(attrs.minDate) || new Date(new Date().setHours(0, 0, 0, 0));
+            
+            ngModelController.$validators.minDate = function(value) {
+                return value >= minDate;
+            };
+        }
+    };
 });

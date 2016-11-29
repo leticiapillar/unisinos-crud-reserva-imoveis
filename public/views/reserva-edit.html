@@ -2,33 +2,56 @@
 
 <div class="row">
     <div class="col-md-12">
-		
+
+		<div class="row">
+			<div class="col-md-12">
+				<p ng-show="mensagem.length" class="alert alert-info">
+					{{mensagem}}
+				</p>
+		    </div>
+		</div>
+		<br />
+
 		<h1><small>Cadastro de Reservas</small></h1>
 		
-		<p ng-show="mensagem.length" class="alert alert-info">{{mensagem}}</p>
 
 		<form novalidate name="formulario" class="row col-md-12" ng-submit="submeter()">
 			
 			<div class="row">
-				<div class="form-group col-md-3">
+				<div class="form-group col-md-6">
 					<label>* Data Inicial</label>
-					<input name="dataInicial" class="form-control" ng-model="reserva.dataInicial" required ui-date-mask>
-					<span ng-show = "formulario.$submitted && formulario.dataInicial.$error.required" class="form-control alert-danger">
+					
+					<input name="dataInicial" class="form-control" ng-model="reserva.dataInicial" ui-date-mask 
+					ng-readonly="reserva._id" ng-if="reserva._id">
+
+					<input type="date" name="dataInicial" class="form-control" ng-model="reserva.dataInicial" required min-date="startDate" ng-init="reserva.dataInicial = startDate" ng-change="changeDataInicial()" ng-if="!reserva._id">
+
+					<span ng-if = "formulario.dataInicial.$error.required" class="form-control alert-danger">
 						Por favor, informe a data inicial da reserva
+					</span> 
+					<span ng-show = "formulario.dataInicial.$error.minDate" class="form-control alert-danger">
+						A data inicial informada deve ser maior ou igual ao dia de hoje {{ startDate | date:'dd/MM/yyyy' }}
 					</span> 
 				</div>
 
-				<div class="form-group col-md-3">
+				<div class="form-group col-md-6">
 					<label>* Data Final</label>
-					<input name="dataFinal" class="form-control" ng-model="reserva.dataFinal" required ui-date-mask>
-					<span ng-show = "formulario.$submitted && formulario.dataFinal.$error.required" class="form-control alert-danger">
+					<input name="dataFinal" class="form-control" ng-model="reserva.dataFinal" ui-date-mask 
+					ng-readonly="reserva._id" ng-if="reserva._id">
+					
+					<input type="date" name="dataFinal" class="form-control" ng-model="reserva.dataFinal" required min-date="endDate" ng-init="reserva.dataFinal = endDate" ng-if="!reserva._id">
+
+					<span ng-if = "formulario.dataFinal.$error.required" class="form-control alert-danger">
 						Por favor, informe a data final da reserva
+					</span> 
+					<span ng-if = "formulario.dataFinal.$error.minDate || (reserva.dataInicial > reserva.dataFinal) " class="form-control alert-danger">
+						A data final informada deve ser maior que a data inicial
 					</span> 
 				</div>
 			</div>		
 
 			<div class="row">
-	        	<div class="form-group col-md-6">
+	        	<div class="form-group col-md-12">
 		            <label>* Imóvel</label>
 		            <select name="imovel" class="form-control" required
 		                ng-controller="ImovelListController"
@@ -43,7 +66,7 @@
 		    </div>
 
 			<div class="row">
-	        	<div class="form-group col-md-6">
+	        	<div class="form-group col-md-12">
 		            <label>* Locatário</label>
 		            <select name="locatario" class="form-control" required
 		                ng-controller="PessoaListController"
@@ -57,7 +80,7 @@
 		        </div>
 		    </div>
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
 			    <button type="submit" class="btn btn-primary" ng-disabled="formulario.$invalid">
 		            Salvar
 		        </button>
