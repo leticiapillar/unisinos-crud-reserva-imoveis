@@ -3,7 +3,7 @@ Unisinos - Trabalho Desenvolvimento de Software III - 2016/2
 - O trabalho consiste em entregar um sistema com o requisitos:
   - uma tela de login
   - um crud
-  - duas regras de negócio
+  - duas regras de negócio
   
 - Para o desenvolvimento deste software foram utilizadas as seguintes tecnologias:
   - Node.js v6.9.1 (https://nodejs.org/en/)
